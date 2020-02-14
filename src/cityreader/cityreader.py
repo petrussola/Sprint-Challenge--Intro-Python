@@ -3,11 +3,14 @@
 import csv
 
 
-class Location:
+class City:
     def __init__(self, name, lat, lon):
         self.name = name
-        self.lat = lat
-        self.lon = lon
+        self.lat = float(lat)
+        self.lon = float(lon)
+
+    def __str__(self):
+        return f"Name: {self.name}, Lat: {self.lat}, Lon: {self.lon}"
 
 
 # We have a collection of US cities with population over 750,000 stored in the
@@ -30,15 +33,14 @@ def cityreader(cities=[]):
     # For each city record, create a new City instance and add it to the
     # `cities` list
     with open('cities.csv', newline='') as csvfile:
-        citiesreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        citiesreader = csv.reader(csvfile, quotechar='|')
         line_count = 0
         for row in citiesreader:
             if line_count == 0:
-              line_count += 1
+                line_count += 1
             else:
-              print(row)
-
-        # return cities
+                cities.append(City(row[0], row[3], row[4]))
+    return cities
 
 
 cityreader(cities)
