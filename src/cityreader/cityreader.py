@@ -102,4 +102,11 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
 
     for city in cities:
         add(city, lat_range, lon_range, within)
+    for i in within:
+        print(i)
     return within
+
+
+lat1, lon1 = input("Input a coordinate point (lat,lon): ").split(',')
+lat2, lon2 = input("Input another coordinate point (lat,lon): ").split(',')
+cityreader_stretch(lat1, lon1, lat2, lon2, cities)
