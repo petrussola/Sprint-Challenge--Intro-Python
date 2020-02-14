@@ -92,7 +92,14 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     lat_range.sort()
     lon_range = [float(lon1), float(lon2)]
     lon_range.sort()
+
+    def add(el, lat, lon, container):
+        if el.lat >= lat[0] and el.lat <= lat[1]:
+            if el.lon >= lon[0] and el.lon <= lon[1]:
+                container.append(el)
+        else:
+            return
+
     for city in cities:
-        if city.lat >= lat_range[0] and city.lat <= lat_range[1] and city.lon >= lon_range[0] and city.lon <= lon_range[1]:
-            within.append(city)
+        add(city, lat_range, lon_range, within)
     return within
